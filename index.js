@@ -35,7 +35,7 @@ function findIt() {
                 newCompetingPath.push(currentStep);
                 if(JSON.stringify(pCoordinate) === JSON.stringify(currentStep)) {
                     success = true;
-                    console.log("Winner Winner Chicken Dinner: " + JSON.stringify(newCompetingPath));
+                    console.log("Winner Winner Chicken Dinner: " + getPathString(newCompetingPath));
                     return true;
                 } else if (maze[currentStep.y][currentStep.x] === 'O') {
                     stepsGained = true;
@@ -67,4 +67,13 @@ function getPossibleSteps(coordinate, traverseMap) {
         stepsArray.push(new Point(coordinate.x, coordinate.y+1));
     }
     return stepsArray;
+}
+
+function getPathString(pathArray) {
+    let returnPath = '\n';
+    for(let path in pathArray) {
+        returnPath = returnPath + "(" + pathArray[path].x + "," + pathArray[path].y + ") " +
+        maze[pathArray[path].y][pathArray[path].x] + "\n";
+    }
+    return returnPath;
 }
